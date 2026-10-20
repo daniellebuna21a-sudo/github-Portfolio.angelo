@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@1&display=swap">
+<style>
+:root{--bg:#f4f1ea;--fg:#14130f;--mut:#6b675c;--card:#fff;--line:#d9d4c7;--acc:#c6ff3d;--accfg:#14130f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0e0c;--fg:#f2efe6;--mut:#9a9686;--card:#171714;--line:#2b2a25}}
+:root[data-theme="dark"]{--bg:#0e0e0c;--fg:#f2efe6;--mut:#9a9686;--card:#171714;--line:#2b2a25}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.55 "Space Grotesk",system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:700;letter-spacing:-.02em;text-decoration:none}
+.logo b{background:var(--acc);color:var(--accfg);padding:0 6px;border-radius:6px;margin-right:4px}
+.links{display:flex;gap:6px;align-items:center}
+.links a{text-decoration:none;padding:6px 12px;border-radius:99px;font-size:14px;color:var(--mut)}
+.links a:hover,.links a.on{background:var(--fg);color:var(--bg)}
+button{font:inherit;cursor:pointer;color:inherit}
+.ic{border:1px solid var(--line);background:var(--card);border-radius:99px;width:38px;height:38px}
+#burger{display:none}
+.btn{display:inline-block;background:var(--acc);color:var(--accfg);border:0;padding:13px 22px;border-radius:99px;font-weight:700;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px) rotate(-1deg)}
+.btn.ghost{background:transparent;border:1px solid var(--fg);color:var(--fg)}
+.hero{padding:72px 0 40px}
+.tag{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);padding:5px 12px;border-radius:99px;font-size:13px;color:var(--mut)}
+.dot{width:8px;height:8px;border-radius:50%;background:#2fd35f;animation:p 1.6s infinite}
+@keyframes p{50%{opacity:.3}}
+h1{font-size:clamp(44px,9vw,104px);line-height:.95;letter-spacing:-.045em;margin:20px 0}
+h1 em{font:italic 400 1.05em "Instrument Serif",Georgia,serif;letter-spacing:-.02em}
+.lead{max-width:560px;color:var(--mut);font-size:18px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:56px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px}
+.stat b{display:block;font-size:clamp(30px,5vw,52px);letter-spacing:-.04em;line-height:1}
+.stat span{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
+.marq{overflow:hidden;border-block:1px solid var(--line);margin:40px 0;background:var(--acc);color:var(--accfg)}
+.marq div{display:flex;gap:40px;white-space:nowrap;width:max-content;padding:12px 0;font-weight:700;text-transform:uppercase;animation:m 22s linear infinite}
+.marq:hover div{animation-play-state:paused}
+@keyframes m{to{transform:translateX(-50%)}}
+section{padding:56px 0}
+h2{font-size:clamp(30px,5vw,56px);letter-spacing:-.04em;margin:0 0 24px;text-transform:uppercase;line-height:1}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip{border:1px solid var(--line);background:transparent;padding:7px 16px;border-radius:99px}
+.chip.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;text-align:left;display:flex;flex-direction:column;gap:10px;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--fg)}
+.card h3{margin:0;font-size:24px;letter-spacing:-.03em}
+.card p{margin:0;color:var(--mut);font-size:15px}
+.pill{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:99px;padding:2px 10px;margin:0 6px 6px 0;color:var(--mut)}
+.more{margin-top:auto;font-weight:700}
+.tl{border-left:2px solid var(--line);margin-left:6px}
+.tli{padding:0 0 28px 24px;position:relative}
+.tli:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--acc);border:2px solid var(--fg)}
+.tli small{color:var(--mut);text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+.tli h3{margin:2px 0 4px;font-size:22px}
+.tli p{margin:0;color:var(--mut);max-width:640px}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center;font-weight:500}
+.tool:hover{background:var(--acc);color:var(--accfg)}
+form{display:grid;gap:12px;max-width:620px}
+input,select,textarea{font:inherit;width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--fg)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--acc);border-color:var(--fg)}
+.note{font-size:14px;min-height:20px;color:var(--mut)}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--mut);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.soc{display:flex;gap:14px}
+#top{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));opacity:0;pointer-events:none;transition:.2s;background:var(--acc);color:var(--accfg);border:0}
+#top.show{opacity:1;pointer-events:auto}
+dialog{border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:24px;max-width:560px;width:calc(100% - 32px);padding:28px}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+dialog h3{font-size:28px;margin:0 0 8px;letter-spacing:-.03em}
+dialog ul{padding-left:18px;color:var(--mut)}
+.rv{opacity:0;transform:translateY(24px);transition:.6s}
+.rv.in{opacity:1;transform:none}
+@media(max-width:760px){
+ #burger{display:inline-block}
+ .links{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;background:var(--bg);padding:12px 20px;border-bottom:1px solid var(--line)}
+ .links.open{display:flex}
+ .stats{grid-template-columns:1fr}
+}
+.profile{display:flex;gap:18px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:18px;margin-bottom:36px;flex-wrap:wrap}
+.av{width:96px;height:96px;border-radius:50%;border:2px solid var(--fg);background:var(--acc) center/cover no-repeat;color:var(--accfg);font:700 34px "Space Grotesk",sans-serif;display:grid;place-items:center;padding:0;flex:none}
+.pinfo{flex:1;min-width:200px}.pinfo h3{margin:0;font-size:24px;letter-spacing:-.03em}.pinfo p{margin:2px 0 8px;color:var(--mut);font-size:14px}
+.psoc{display:flex;gap:8px;flex-wrap:wrap}.psoc a,.psoc button{font-size:13px;text-decoration:none;border:1px solid var(--line);background:transparent;border-radius:99px;padding:4px 12px}.psoc a:hover,.psoc button:hover{background:var(--fg);color:var(--bg)}
+.two{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:start}
+#about p{font-size:19px;margin:0 0 16px}
+.comps{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-bottom:28px}
+.comp{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}.comp h3{margin:0 0 10px;font-size:20px;letter-spacing:-.02em}.comp p{margin:8px 0 0;color:var(--mut);font-size:14px}.comp small{color:var(--mut);text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+.qbox{background:var(--fg);color:var(--bg);border-radius:32px;padding:clamp(28px,6vw,64px);position:relative;overflow:hidden}
+.qm{position:absolute;top:-30px;left:20px;font:italic 220px/1 "Instrument Serif",Georgia,serif;color:var(--acc);opacity:.9}
+#qt{position:relative;font:italic 400 clamp(26px,4.5vw,46px)/1.2 "Instrument Serif",Georgia,serif;margin:40px 0 24px;min-height:3.6em}
+.qbox .btn.ghost{border-color:var(--bg);color:var(--bg)}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.smp{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:#ffb020;color:#14130f;border-radius:99px;padding:2px 9px;margin:0 8px 8px 0}
+.cdet{color:var(--mut);margin:-8px 0 20px;max-width:560px}.cdet a{color:var(--fg);font-weight:700}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+ <a class="logo" href="#home"><b>◐</b><span id="logoName">Angelo Daniel A. Lebuna</span></a>
+ <div class="links" id="links">
+  <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#journey">Journey</a><a href="#contact">Message me</a>
+ </div>
+ <div style="display:flex;gap:8px"><button class="ic" id="theme" aria-label="Toggle theme">☾</button><button class="ic" id="burger" aria-label="Menu">≡</button></div>
+</nav></div></header>
+
+<main class="wrap">
+<section class="hero" id="home">
+ <div class="profile">
+  <button class="av" id="av" aria-label="Profile photo" title="Profile photo"></button>
+  <div class="pinfo"><h3 id="pname"></h3><p><span id="role"></span> · <span id="loc"></span></p><div class="psoc" id="psoc"></div></div>
+  <input type="file" id="avfile" accept="image/*" hidden>
+ </div>
+ <span class="tag"><i class="dot"></i> Open to internships &amp; collaborations</span>
+ <h1>I build <em>useful</em> software &amp; smart automations.</h1>
+ <p class="lead">I’m aiming to grow into a developer who builds reliable, thoughtful software, the kind that makes someone’s day a little easier. I’m still learning, still experimenting, and excited about how much there is ahead.</p>
+ <div class="cta"><a class="btn" href="#projects">See my work</a><a class="btn ghost" href="#contact">Let’s talk</a><button class="btn ghost" id="copyMail">Copy email</button></div>
+ <div class="stats">
+  <div class="stat"><b data-n="2">0</b><span>Featured projects</span></div>
+  <div class="stat"><b data-n="6">0</b><span>Tools wired in Zapier</span></div>
+  <div class="stat"><b data-n="15">0</b><span>Users in my capstone</span></div>
+ </div>
+</section>
+</main>
+
+<div class="marq" aria-hidden="true"><div id="mq"></div></div>
+
+<main class="wrap">
+<section id="about">
+ <h2 class="rv">About me</h2>
+ <div class="two"><div id="abouttext"></div><div id="bg" class="comps" style="grid-template-columns:1fr"></div></div>
+</section>
+
+<section id="skills">
+ <h2 class="rv">Technical competencies</h2>
+ <div class="comps" id="comp"></div>
+</section>
+
+<section id="projects">
+ <h2 class="rv">Recent projects</h2>
+ <div class="filters" id="filters">
+  <button class="chip on" data-f="all">All</button><button class="chip" data-f="mobile">Mobile</button><button class="chip" data-f="automation">Automation</button>
+ </div>
+ <div class="grid" id="grid"></div>
+</section>
+
+<section id="journey">
+ <h2 class="rv">My journey</h2>
+ <div class="tl" id="tl"></div>
+</section>
+
+<section id="tools">
+ <h2 class="rv">Tools I use</h2>
+ <div class="tools" id="toolgrid"></div>
+</section>
+
+<section id="quote">
+ <div class="qbox rv"><span class="qm" aria-hidden="true">“</span><p id="qt"></p><div class="cta"><button class="btn" id="qn">Another quote</button><button class="btn ghost" id="qc">Copy</button></div></div>
+</section>
+
+<section id="contact">
+ <h2 class="rv">Message me</h2>
+ <p class="cdet">Have a project, an opportunity or just a question? Send a note below, or email me directly at <a id="cmail" href="#"></a>.</p>
+ <form id="form" novalidate>
+  <input id="fn" placeholder="Your name" required autocomplete="name">
+  <input id="fe" type="email" placeholder="Your email address" required autocomplete="email">
+  <select id="ft"><option>Project inquiry</option><option>Internship / job</option><option>Collaboration</option><option>Just saying hi</option></select>
+  <textarea id="fm" rows="5" placeholder="Write your message here…" required></textarea>
+  <button class="btn" type="submit">Send message</button>
+  <div class="note" id="note" role="status"></div>
+ </form>
+</section>
+</main>
+
+<div class="wrap"><footer>
+ <span>© <span id="yr"></span> <span id="fname">Angelo Daniel A. Lebuna</span>. Let’s build something that matters.</span>
+ <div class="soc" id="soc"></div>
+</footer></div>
+
+<button class="ic" id="top" aria-label="Back to top">↑</button>
+<dialog id="dlg"><h3 id="dt"></h3><div id="db"></div><div class="cta"><button class="btn" id="dc">Close</button></div></dialog>
+
+<script>
+/* ===== EDIT THIS BLOCK ===== */
+const ME={
+ name:"Angelo Daniel A. Lebuna", email:"Daniellebuna21a@gmail.com",
+ github:"https://github.com/daniellebuna21a-sudo", linkedin:"https://www.linkedin.com/",
+ skills:["Android","Kotlin","Zapier","Apollo API","Google Sheets","Slack","Gmail","GitHub","Figma","Git"],
+ projects:[
+  {t:"Synced N",c:"mobile",d:"Church music ministry schedule & lineup management app for New Life Christian Church, Pasig.",tags:["Android","Capstone","Team project"],
+   more:["Android-only app for ~15 music ministry members across 3 rotating teams","Central song repository with lyrics, chords, key, tempo and capo","Scheduling, availability marking, substitutions and conflict handling","In-app announcements and notifications when lineups change","Two roles: Ministry Administrator/Leader and Member"]},
+  {t:"Automated Lead Enrichment",c:"automation",d:"Zapier AI automation that takes a webhook lead and enriches it automatically.",tags:["Zapier","Apollo","Sheets","Slack","Gmail"],
+   more:["Webhook catches a new lead","Apollo enriches the contact details","Paths route leads by outcome","Results saved to Google Sheets","Slack alert and Gmail follow-up sent automatically"]}
+ ],
+ role:"Aspiring Software Developer", location:"Pasig City, Philippines",
+ about:["I’m new to coding and programming, and honestly, that’s what makes it exciting. Every line I write teaches me something I didn’t know yesterday.","I’m inspired by how a few lines of code can make someone’s day easier, and I want to grow into a developer who builds reliable, thoughtful software.","I’m still learning, making mistakes and getting better one project at a time. Right now I’m focused on building strong foundations, staying curious and enjoying the process."],
+ bg:[{k:"Education",t:"Computer Engineering",p:"Studying Bachelor of Science in Computer Engineering at ICCT College Cainta Campus."},{k:"Approach",t:"People first",p:"I start with the problem and the people, then choose the simplest technology that fits."}],
+ comps:[{t:"Mobile Development",i:["Android","App design","Notifications","Scheduling logic"],u:"Used in: Synced N"},{t:"Automation & Integrations",i:["Zapier","Webhooks","Apollo","Paths","Google Sheets","Slack","Gmail"],u:"Used in: Automated Lead Enrichment"},{t:"Analysis & Software Design",i:["User interviews","Requirements","Functional requirements","Scoping"],u:"Used in: Synced N, Chapter 3"},
+  {t:"Design & Soft Skills",i:["Figma","Communication","Time management"],u:"Skills I’m building as I learn"}],
+ quotes:["Good code is a letter to the next person who has to read it. Write it kindly.","Every bug is just a requirement I haven’t understood yet.","Programming turns ‘it’s complicated’ into ‘it’s one small step at a time.’","Software can’t fix a messy process until someone takes the time to understand it.","Ship small, listen closely, and let real users write your next feature."],
+ journey:[
+  {w:"2022 – 2026",t:"ICCT College Cainta Campus – BSCOE",p:"Bachelor of Science in Computer Engineering."},
+  {w:"2026",t:"Automated Lead Enrichment",p:"Designed and built an AI automation workflow with Zapier connecting webhook, Apollo, Sheets, Slack and Gmail."},
+  {w:"2026",t:"Capstone: Synced N",p:"Software Design course. Interviewed the music ministry, wrote the requirements and designed an Android app to replace Messenger-based scheduling."}
+ ]
+};
+ME.gmail="https://mail.google.com/mail/?view=cm&to="+encodeURIComponent(ME.email);
+/* =========================== */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const root=document.documentElement;
+$("#logoName").textContent=$("#fname").textContent=ME.name;$("#yr").textContent=new Date().getFullYear();
+$("#mq").innerHTML=Array(2).fill(["Android","Automation","Zapier","Problem solving","Design thinking","Open source"].map(x=>"<span>"+x+" ✦</span>").join("")).join("");
+$("#soc").innerHTML=[["GitHub",ME.github],["LinkedIn",ME.linkedin],["Gmail",ME.gmail],["Email","mailto:"+ME.email]].map(([n,u])=>`<a href="${u}" target="_blank" rel="noopener">${n}</a>`).join("");
+$("#toolgrid").innerHTML=ME.skills.map(s=>`<div class="tool">${s}</div>`).join("");
+$("#tl").innerHTML=ME.journey.map(j=>`<div class="tli rv">${j.s?'<span class="smp">Sample – replace me</span>':''}<small>${j.w}</small><h3>${j.t}</h3><p>${j.p||""}</p></div>`).join("");
+
+function draw(f){
+ $("#grid").innerHTML=ME.projects.map((p,i)=>({p,i})).filter(o=>f==="all"||o.p.c===f).map(({p,i})=>
+ `<button class="card" data-i="${i}"><div>${p.tags.map(t=>`<span class="pill">${t}</span>`).join("")}</div><h3>${p.t}</h3><p>${p.d}</p><span class="more">View details →</span></button>`).join("");
+}
+draw("all");
+$("#filters").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;$$(".chip").forEach(c=>c.classList.toggle("on",c===b));draw(b.dataset.f)};
+$("#grid").onclick=e=>{const c=e.target.closest(".card");if(!c)return;const p=ME.projects[c.dataset.i];
+ $("#dt").textContent=p.t;$("#db").innerHTML=`<p>${p.d}</p><ul>${p.more.map(m=>`<li>${m}</li>`).join("")}</ul>`;
+ try{$("#dlg").showModal()}catch(_){$("#dlg").setAttribute("open","")}};
+$("#dc").onclick=()=>$("#dlg").close();
+$("#dlg").onclick=e=>{if(e.target===$("#dlg"))$("#dlg").close()};
+
+$("#pname").textContent=ME.name;$("#cmail").textContent=ME.email;$("#cmail").href="mailto:"+ME.email;$("#role").textContent=ME.role;$("#loc").textContent=ME.location;
+$("#psoc").innerHTML=[["GitHub",ME.github],["LinkedIn",ME.linkedin],["Gmail",ME.gmail],["Email","mailto:"+ME.email]].map(([n,u])=>`<a href="${u}" target="_blank" rel="noopener">${n}</a>`).join("")+`<button id="avbtn">Change photo</button>`;
+$("#abouttext").innerHTML=ME.about.map(p=>`<p>${p}</p>`).join("");
+$("#bg").innerHTML=ME.bg.map(b=>`<div class="comp rv"><small>${b.k}</small><h3>${b.t}</h3><p>${b.p}</p></div>`).join("");
+$("#comp").innerHTML=ME.comps.map(c=>`<div class="comp rv">${c.s?'<span class="smp">Sample – replace me</span>':''}<h3>${c.t}</h3><div>${c.i.map(x=>`<span class="pill">${x}</span>`).join("")}</div><p>${c.u}</p></div>`).join("");
+
+/* profile photo (stored in this browser only) */
+const av=$("#av"),ini=ME.name.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase();
+function setAv(s){if(s){av.style.backgroundImage=`url(${s})`;av.textContent=""}else{av.style.backgroundImage="";av.textContent=ini}}
+let sv=null;try{sv=localStorage.getItem("avatar")}catch(_){}setAv(sv);
+const pick=()=>$("#avfile").click();av.onclick=pick;$("#avbtn").onclick=pick;
+$("#avfile").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement("canvas");c.width=c.height=240;const s=Math.min(im.width,im.height);c.getContext("2d").drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,240,240);const u=c.toDataURL("image/jpeg",.85);setAv(u);try{localStorage.setItem("avatar",u)}catch(_){}};im.src=r.result};r.readAsDataURL(f)};
+
+/* quotes */
+let qi=Math.floor(Math.random()*ME.quotes.length);const showQ=()=>{$("#qt").textContent=ME.quotes[qi]};showQ();
+$("#qn").onclick=()=>{qi=(qi+1)%ME.quotes.length;showQ()};
+$("#qc").onclick=async e=>{try{await navigator.clipboard.writeText(ME.quotes[qi])}catch(_){}e.target.textContent="Copied ✓";setTimeout(()=>e.target.textContent="Copy",1500)};
+
+/* theme */
+function setTheme(t){root.dataset.theme=t;$("#theme").textContent=t==="dark"?"☀":"☾";try{localStorage.setItem("theme",t)}catch(_){}}
+let saved=null;try{saved=localStorage.getItem("theme")}catch(_){}
+setTheme(saved||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));
+$("#theme").onclick=()=>setTheme(root.dataset.theme==="dark"?"light":"dark");
+
+/* menu */
+$("#burger").onclick=()=>$("#links").classList.toggle("open");
+$("#links").onclick=e=>{if(e.target.tagName==="A")$("#links").classList.remove("open")};
+
+/* copy email */
+$("#copyMail").onclick=async e=>{const b=e.target;let ok=false;try{await navigator.clipboard.writeText(ME.email);ok=true}catch(_){}
+ b.textContent=ok?"Copied ✓":ME.email;setTimeout(()=>b.textContent="Copy email",1800)};
+
+/* contact: opens the visitor's email app, pre-filled */
+$("#form").onsubmit=e=>{e.preventDefault();const n=$("#fn").value.trim(),m=$("#fe").value.trim(),g=$("#fm").value.trim();
+ if(!n||!/^\S+@\S+\.\S+$/.test(m)||!g){$("#note").textContent="Please fill in your name, a valid email and a message.";return}
+ const body=encodeURIComponent(g+"\n\n— "+n+" ("+m+")");
+ location.href="mailto:"+ME.email+"?subject="+encodeURIComponent($("#ft").value+" from "+n)+"&body="+body;
+ $("#note").textContent="Opening your email app… if nothing opens, use the Copy email button above.";};
+
+/* back to top + active link + reveal + counters */
+const secs=$$("main section,section"),links=$$(".links a");
+addEventListener("scroll",()=>{$("#top").classList.toggle("show",scrollY>500);
+ let cur="home";secs.forEach(s=>{if(s.id&&s.getBoundingClientRect().top<140)cur=s.id});
+ links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+cur))},{passive:true});
+$("#top").onclick=()=>scrollTo({top:0});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.15});
+$$(".rv").forEach(el=>io.observe(el));
+$$("[data-n]").forEach(el=>{const n=+el.dataset.n;let i=0;const t=setInterval(()=>{i++;el.textContent="+"+i;if(i>=n)clearInterval(t)},60)});
+</script>
+</body>
+</html>
